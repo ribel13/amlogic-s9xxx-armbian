@@ -86,7 +86,7 @@ on:
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -freedom
 
 env:
   TZ: Etc/UTC
