@@ -29,7 +29,7 @@ on:
           - none
 
 env:
-  TZ: Etc/UTC
+  TZ: Asia/Jayapura
   ROOTFS_SCRIPT: compile-kernel/tools/script/docker/build_armbian_rootfs_file.sh
   MAKE_DOCKER_SH: compile-kernel/tools/script/docker/build_armbian_docker_image.sh
   DOCKER_OUTPATH: out
@@ -62,8 +62,8 @@ jobs:
           sudo -E apt-get clean
           sudo sed -i '/NVM_DIR/d;/skel/d' /root/{.bashrc,.profile}
           sudo rm -rf ~/{.cargo,.dotnet,.rustup}
-          sudo -E timedatectl set-timezone "${TZ:-Etc/UTC}"
-          sudo -E ntpdate ntp.ubuntu.com 0.pool.ntp.org || true
+          sudo -E timedatectl set-timezone "${TZ:-Asia/Jayapura}"
+          sudo -E ntpdate ntp.ubuntu.com 0.id.pool.ntp.org || true
           sudo -E timedatectl set-ntp true
           date -u
           timedatectl status || true
@@ -138,7 +138,7 @@ jobs:
           body: |
             ### Armbian Image information
             - Default username: `root`
-            - Default password: `1234`
+            - Default password: `none`
             ### Applicable platform
             - 💻 `amd64(uefi-x86)`
             - 🐋 Docker image: https://hub.docker.com/u/ophub
