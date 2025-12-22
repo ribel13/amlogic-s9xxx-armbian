@@ -13,15 +13,16 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "unifreq"
+        default: "ribel13"
         type: choice
         options:
           - unifreq
           - ophub
+          - ribel13
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "6.12.y"
+        default: "6.6.y"
         type: choice
         options:
           - 5.10.y
@@ -69,7 +70,7 @@ on:
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -freedom
 
 env:
   TZ: Etc/UTC
@@ -167,7 +168,8 @@ jobs:
             kernel-${{ inputs.kernel_toolchain }}-${{ inputs.kernel_version }}-
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: ribel13/linux-6.6.y/@main
+        #uses: ophub/amlogic-s9xxx-armbian@main
         if: ${{ steps.mapped.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
