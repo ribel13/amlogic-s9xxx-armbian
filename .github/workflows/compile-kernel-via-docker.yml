@@ -21,7 +21,7 @@ on:
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "6.12.y"
+        default: "6.6.y"
         type: choice
         options:
           - 5.10.y
@@ -75,14 +75,14 @@ on:
       kernel_sign:
         description: "Set the kernel custom signature"
         required: false
-        default: "-ophub"
+        default: "-freedom"
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -freedom
 
 env:
-  TZ: Etc/UTC
+  TZ: Asia/Jayapura
 
 jobs:
   build:
@@ -112,7 +112,7 @@ jobs:
           sudo -E apt-get clean
           sudo sed -i '/NVM_DIR/d;/skel/d' /root/{.bashrc,.profile}
           sudo rm -rf ~/{.cargo,.dotnet,.rustup}
-          sudo -E timedatectl set-timezone "${TZ:-Etc/UTC}"
+          sudo -E timedatectl set-timezone "${TZ:-Asia/Jayapura}"
           sudo -E ntpdate ntp.ubuntu.com 0.pool.ntp.org || true
           sudo -E timedatectl set-ntp true
           date -u
@@ -198,7 +198,7 @@ jobs:
             kernel-${{ inputs.kernel_toolchain }}-${{ inputs.kernel_version }}-
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: ribel13/amlogic-s9xxx-armbian@main
         if: ${{ steps.pull.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
