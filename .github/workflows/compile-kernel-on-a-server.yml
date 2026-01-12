@@ -185,6 +185,8 @@ jobs:
         id: mapped
         working-directory: /builder
         run: |
+          ##df -hT ${PWD}
+          ##mkdir -p /builder/{kernel,output}
           df -hT ${PWD}
           mkdir -p /builder/{kernel,output}
           ##ln -sf /builder/kernel /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/kernel
