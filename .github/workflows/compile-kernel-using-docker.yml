@@ -13,11 +13,15 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "unifreq"
+        default: "ribel13"
         type: choice
         options:
           - unifreq
           - codesnas
+          - chanz-x
+          - dirgha80
+          - houjie80
+          - ribel13
       kernel_version:
         description: "Select kernel version"
         required: false
@@ -97,7 +101,7 @@ on:
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -freedom
 
 env:
   TZ: Etc/UTC
@@ -201,7 +205,8 @@ jobs:
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        ##uses: ophub/amlogic-s9xxx-armbian@main
+        uses: chanz-x/amlogic-s9xxx-armbian@main
         if: ${{ steps.pull.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
