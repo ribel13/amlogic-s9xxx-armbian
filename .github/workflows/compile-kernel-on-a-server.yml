@@ -25,7 +25,7 @@ on:
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "6.12.y"
+        default: "6.17.y"
         type: choice
         options:
           - 5.4.y
@@ -34,7 +34,7 @@ on:
           - 6.1.y
           - 6.6.y
           - 6.12.y
-          - 6.14.y
+          - 6.17.y
           - 5.4.y_5.10.y
           - 5.15.y_6.1.y
           - 6.6.y_6.12.y
@@ -87,7 +87,7 @@ on:
       kernel_sign:
         description: "Set the kernel custom signature"
         required: false
-        default: "-ophub"
+        default: "-freedom"
         type: choice
         options:
           - -ophub
@@ -192,13 +192,13 @@ jobs:
           mkdir -p /builder/{kernel,output}
           ##ln -sf /builder/kernel /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/kernel
           ##ln -sf /builder/output /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/output
-          ln -sf /builder/kernel /home/runner/work/_actions/chanz-x/amlogic-s9xxx-armbian/main/compile-kernel/kernel
-          ln -sf /builder/output /home/runner/work/_actions/chanz-x/amlogic-s9xxx-armbian/main/compile-kernel/output
+          ln -sf /builder/kernel /home/runner/work/_actions/ribel13/amlogic-s9xxx-armbian/main/compile-kernel/kernel
+          ln -sf /builder/output /home/runner/work/_actions/ribel13/amlogic-s9xxx-armbian/main/compile-kernel/output
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
         #uses: ophub/amlogic-s9xxx-armbian@main
-        uses: chanz-x/amlogic-s9xxx-armbian@main
+        uses: ribel13/amlogic-s9xxx-armbian@main
         if: ${{ steps.mapped.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
@@ -216,7 +216,8 @@ jobs:
         uses: ncipollo/release-action@main
         if: ${{ env.PACKAGED_STATUS }} == 'success' && !cancelled()
         with:
-          tag: kernel_stable
+          #tag: kernel_stable
+          tag: kernel_dev
           artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
           allowUpdates: true
           removeArtifacts: false
