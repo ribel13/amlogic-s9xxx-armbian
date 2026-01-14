@@ -19,8 +19,8 @@ on:
           - unifreq
           - codesnas
           - chanz-x
-          - dirgha80
-          - houjie80
+          - Dirgha80
+          - Houjie80
           - ribel13
       kernel_version:
         description: "Select kernel version"
