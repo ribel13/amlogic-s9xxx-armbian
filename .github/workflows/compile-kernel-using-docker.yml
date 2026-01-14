@@ -25,7 +25,7 @@ on:
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "6.17.y"
+        default: "6.12.y"
         type: choice
         options:
           - 5.4.y
@@ -35,11 +35,6 @@ on:
           - 6.6.y
           - 6.17.y
           - 6.12.y
-          - 5.4.y_5.10.y
-          - 5.15.y_6.1.y
-          - 6.6.y_6.12.y
-          - 5.4.y_5.10.y_5.15.y
-          - 6.1.y_6.6.y_6.12.y
           - all
       kernel_auto:
         description: "Auto use the latest kernel"
@@ -239,7 +234,7 @@ jobs:
           delete_source: ${{ inputs.delete_source }}
           kernel_package: ${{ inputs.kernel_package }}
           kernel_sign: ${{ inputs.kernel_sign }}
-          #kernel_toolchain: ${{ inputs.kernel_toolchain }}
+          kernel_toolchain: ${{ inputs.kernel_toolchain }}
           compress_format: ${{ inputs.compress_format }}
           silent_log: ${{ inputs.silent_log }}
           
