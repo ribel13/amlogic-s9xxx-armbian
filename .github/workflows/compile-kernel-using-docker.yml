@@ -13,7 +13,7 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "ribel13"
+        default: "tes-rep"
         type: choice
         options:
           - unifreq
@@ -21,11 +21,12 @@ on:
           - chanz-x
           - Dirgha80
           - Houjie80
+          - tes-rep
           - ribel13
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "6.12.59"
+        default: "6.17.4"
         type: choice
         options:
           - 5.4.y
@@ -34,8 +35,8 @@ on:
           - 6.1.y
           - 6.6.y
           - 6.17.y
+          - 6.17.4
           - 6.12.y
-          - 6.12.59
           - all
       kernel_auto:
         description: "Auto use the latest kernel"
