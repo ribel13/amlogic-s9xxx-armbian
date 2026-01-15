@@ -13,7 +13,7 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "tes-rep"
+        default: "ribel13"
         type: choice
         options:
           - unifreq
