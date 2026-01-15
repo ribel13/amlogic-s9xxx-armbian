@@ -199,7 +199,7 @@ jobs:
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
         #uses: ophub/amlogic-s9xxx-armbian@main
-        uses: tes-rep/amlogic-s9xxx-armbian@main@main
+        uses: Houjie80/amlogic-s9xxx-armbian@main@main
         if: ${{ steps.mapped.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
