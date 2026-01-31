@@ -244,8 +244,8 @@ jobs:
         uses: ncipollo/release-action@main
         if: ${{ env.PACKAGED_STATUS }} == 'success' && !cancelled()
         with:
-          tag: kernel_stable
-          #tag: kernel_dev
+          #tag: kernel_stable
+          tag: kernel_dev
           artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
           allowUpdates: true
           removeArtifacts: false
