@@ -25,10 +25,9 @@ on:
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "6.6.109"
+        default: "6.6.y"
         type: choice
         options:
-          - 6.6.109
           - 5.4.y
           - 5.10.y
           - 5.15.y
@@ -44,7 +43,7 @@ on:
       kernel_auto:
         description: "Auto use the latest kernel"
         required: false
-        default: false
+        default: true
         type: boolean
       silent_log:
         description: "Use silent logging"
