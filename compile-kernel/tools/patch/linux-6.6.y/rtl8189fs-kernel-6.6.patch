@@ -1,5 +1,9 @@
 --- a/drivers/net/wireless/realtek/rtl8189fs/os_dep/linux/ioctl_cfg80211.c
 +++ b/drivers/net/wireless/realtek/rtl8189fs/os_dep/linux/ioctl_cfg80211.c
+...
+--- a/drivers/net/wireless/realtek/rtl8192eu/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtl8192eu/os_dep/linux/ioctl_cfg80211.c
+
 @@ -17,6 +17,7 @@
  #include <drv_types.h>
  #include <rtw_wifi_regd.h>
