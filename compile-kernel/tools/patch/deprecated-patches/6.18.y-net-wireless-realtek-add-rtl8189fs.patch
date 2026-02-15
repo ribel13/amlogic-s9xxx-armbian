@@ -1,0 +1,36 @@
+--- a/drivers/net/wireless/realtek/rtl8189fs/os_dep/linux/ioctl_cfg80211.c
++++ b/drivers/net/wireless/realtek/rtl8189fs/os_dep/linux/ioctl_cfg80211.c
+@@ -18,6 +17,7 @@
+ include <drv_types.h>
+ include <rtw_wifi_regd.h>
+ include <wifi.h>
++#include <linux/version.h>
+
+ ...
+
+@@ -419,7 +420,11 @@ rtw_cfg80211_ch_switch_notify(_adapter *adapter, u8 ch, u8 bw, u8 offset, u8 ht)
+         struct cfg80211_chan_def chdef;
+         rtw_chdef_create(&chdef, wiphy, ch, bw, offset);
+
+-        cfg80211_ch_switch_notify(adapter->pnetdev, &chdef, 0, 0);
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
++        cfg80211_ch_switch_notify(adapter->pnetdev, &chdef);
++#else
++        cfg80211_ch_switch_notify(adapter->pnetdev, &chdef, 0, 0);
++#endif
+ }
+
+ ...
+
+@@ -9669,7 +9674,11 @@ static struct cfg80211_ops rtw_cfg80211_ops = {
+     .mgmt_tx_cancel_wait = cfg80211_rtw_mgmt_tx_cancel_wait,
+     .remain_on_channel = cfg80211_rtw_remain_on_channel,
+     .cancel_remain_on_channel = cfg80211_rtw_cancel_remain_on_channel,
+-    .change_beacon = cfg80211_rtw_change_beacon,
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 12, 0)
++    .change_beacon = cfg80211_rtw_change_beacon,
++#else
++    // .change_beacon removed due to incompatible function pointer
++#endif
+     ...
+ };
